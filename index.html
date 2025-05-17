@@ -53,7 +53,8 @@
   </table>
 
   <script>
-    const apiUrl = "https://localhost:5001/api/productos"; // URL base de la API
+    // API de prueba pública para simular productos (no se puede crear/eliminar en realidad)
+    const apiUrl = "https://fakestoreapi.com/products";
 
     // Función para obtener y mostrar productos
     async function cargarProductos() {
@@ -65,39 +66,26 @@
         const tr = document.createElement("tr"); // Crea una fila nueva
         tr.innerHTML = `
           <td>${p.id}</td>
-          <td>${p.nombre}</td>
-          <td>${p.precio}</td>
+          <td>${p.title}</td>
+          <td>${p.price}</td>
           <td>
-            <button onclick="eliminarProducto(${p.id})">Eliminar</button> <!-- Botón para eliminar producto -->
+            <button disabled>Eliminar</button> <!-- Deshabilitado porque es una API de solo lectura -->
           </td>
         `;
         tbody.appendChild(tr); // Agrega la fila a la tabla
       });
     }
 
-    // Función para crear un producto
+    // Función desactivada porque la API no permite POST
     async function crearProducto() {
-      const nombre = document.getElementById("nombre").value; // Obtiene el nombre del input
-      const precio = parseFloat(document.getElementById("precio").value); // Obtiene el precio del input
-
-      await fetch(apiUrl, {
-        method: "POST", // Método POST para crear
-        headers: {
-          "Content-Type": "application/json" // Define el tipo de contenido
-        },
-        body: JSON.stringify({ nombre, precio }) // Envía el producto como JSON
-      });
-
-      cargarProductos(); // Recarga la tabla
+      alert("Esta versión de prueba no permite crear productos (API pública de solo lectura)");
     }
 
-    // Función para eliminar un producto
+    // Función desactivada porque la API no permite DELETE
     async function eliminarProducto(id) {
-      await fetch(`${apiUrl}/${id}`, {
-        method: "DELETE" // Método DELETE para eliminar
-      });
-      cargarProductos(); // Recarga la tabla
+      alert("No se puede eliminar en esta versión de prueba (API pública de solo lectura)");
     }
   </script>
 </body>
 </html>
+
